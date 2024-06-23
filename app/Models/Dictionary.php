@@ -10,8 +10,9 @@ use App\Models\User;
 class Dictionary extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
-    public function dictionary(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

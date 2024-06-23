@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('dictionaries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->json('words');
-            $table->timestamps();
+            $table->string('word');
+            $table->string('translation');
         });
     }
 

@@ -16,7 +16,6 @@
             </tr>
         </thead>
         <tbody id='dictionary-body'>
-
         </tbody>
     </table>
 </div>

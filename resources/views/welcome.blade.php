@@ -11,6 +11,8 @@
                     </div>
                 </div>
                 @include('components.dictionary-table')
+                @include('components.api-token')
+                @include('components.pagination')
             </div>
         </div>
     </div>

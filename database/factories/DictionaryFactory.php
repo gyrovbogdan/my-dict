@@ -17,13 +17,8 @@ class DictionaryFactory extends Factory
     public function definition(): array
     {
         return [
-            'words' =>
-                json_encode([
-                    ['word' => 'Слово', 'translation' => 'Word'],
-                    ['word' => 'Собака', 'translation' => 'Dog'],
-                    ['word' => 'Последствия', 'translation' => 'Consequences'],
-                    ['word' => 'Ломать', 'translation' => 'Break']
-                ])
+            'word' => fake()->word(),
+            'translation' => fake()->word()
         ];
     }
 }

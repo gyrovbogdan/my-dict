@@ -12,8 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->hasDictionary()->create();
-
+        \App\Models\User::factory(10)->hasDictionary(100)->create();
+        \App\Models\User::factory()->hasDictionary(100)->create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+        ]);
 
 
         // \App\Models\User::factory()->create([

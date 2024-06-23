@@ -6,7 +6,8 @@ use App\Http\Requests\StoreDictionaryRequest;
 use App\Http\Requests\UpdateDictionaryRequest;
 use App\Models\Dictionary;
 use App\Models\User;
-
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Http\Request;
 
 class DictionaryController extends Controller
 {
@@ -15,7 +16,8 @@ class DictionaryController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->id();
+        return Dictionary::where('user_id', $user_id)->paginate(10);
     }
 
     /**
