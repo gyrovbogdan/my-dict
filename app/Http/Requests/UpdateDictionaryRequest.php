@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDictionaryRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateDictionaryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,8 @@ class UpdateDictionaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'text' => 'required|string|min:2|max:20',
+            'lang' => 'required|string|in:ru,en'
         ];
     }
 }

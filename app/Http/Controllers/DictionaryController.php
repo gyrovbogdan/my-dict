@@ -8,6 +8,8 @@ use App\Models\Dictionary;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class DictionaryController extends Controller
 {
@@ -17,7 +19,19 @@ class DictionaryController extends Controller
     public function index()
     {
         $user_id = auth()->id();
-        return Dictionary::where('user_id', $user_id)->paginate(10);
+        $dictionaries = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
+
+        $count = Dictionary::where('user_id', $user_id)->count();
+        $perPage = $dictionaries->perPage();
+        $currentPage = $dictionaries->currentPage();
+        $startIndex = ($count / $perPage - $currentPage + 1) * $perPage;
+
+        $dictionaries->getCollection()->transform(function ($item, $index) use ($startIndex) {
+            $item->number = $startIndex - $index;
+            return $item;
+        });
+
+        return $dictionaries;
     }
 
     /**
@@ -41,7 +55,17 @@ class DictionaryController extends Controller
      */
     public function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
     {
-        //
+        $tr = new GoogleTranslate();
+        extract($request->only(['text', 'lang']));
+        if ($lang == 'ru') {
+            $word = $text;
+            $translation = $tr->setSource($lang)->setTarget('en')->translate($text);
+            $dictionary->update(['word' => $text, 'translation' => $translation]);
+        } else {
+            $translation = $text;
+            $word = $tr->setSource($lang)->setTarget('ru')->translate($text);
+            $dictionary->update(['word' => $word, 'translation' => $translation]);
+        }
     }
 
     /**

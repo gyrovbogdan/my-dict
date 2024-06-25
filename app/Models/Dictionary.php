@@ -11,6 +11,7 @@ class Dictionary extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public $fillable = ['word', 'translation'];
 
     public function user(): BelongsTo
     {

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DictionaryController;
+use App\Http\Controllers\TranslateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:sanctum')->resource('dictionary', DictionaryController::class);
+
+Route::get('/translate', [TranslateController::class, 'index']);
