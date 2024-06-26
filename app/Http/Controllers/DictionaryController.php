@@ -21,10 +21,10 @@ class DictionaryController extends Controller
         $user_id = auth()->id();
         $dictionaries = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
 
-        $count = Dictionary::where('user_id', $user_id)->count();
+        $total = $dictionaries->total();
         $perPage = $dictionaries->perPage();
         $currentPage = $dictionaries->currentPage();
-        $startIndex = ($count / $perPage - $currentPage + 1) * $perPage;
+        $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
 
         $dictionaries->getCollection()->transform(function ($item, $index) use ($startIndex) {
             $item->number = $startIndex - $index;
@@ -39,7 +39,23 @@ class DictionaryController extends Controller
      */
     public function store(StoreDictionaryRequest $request)
     {
-        //
+        $word = '';
+        $translation = '';
+        extract($request->only(['text', 'lang']));
+
+        $tr = new GoogleTranslate();
+        if ($lang == 'ru') {
+            $word = $text;
+            $translation = $tr->setSource($lang)->setTarget('en')->translate($text);
+        } else {
+            $translation = $text;
+            $word = $tr->setSource($lang)->setTarget('ru')->translate($text);
+        }
+
+        $user_id = auth()->id();
+        $user = User::findOrFail($user_id);
+        $dictionary = $user->dictionary()->create(compact('word', 'translation'));
+        return $dictionary;
     }
 
     /**
@@ -55,17 +71,18 @@ class DictionaryController extends Controller
      */
     public function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
     {
+        $word = '';
+        $translation = '';
         $tr = new GoogleTranslate();
         extract($request->only(['text', 'lang']));
         if ($lang == 'ru') {
             $word = $text;
             $translation = $tr->setSource($lang)->setTarget('en')->translate($text);
-            $dictionary->update(['word' => $text, 'translation' => $translation]);
         } else {
             $translation = $text;
             $word = $tr->setSource($lang)->setTarget('ru')->translate($text);
-            $dictionary->update(['word' => $word, 'translation' => $translation]);
         }
+        $dictionary->update(compact('word', 'translation'));
     }
 
     /**
@@ -73,6 +90,6 @@ class DictionaryController extends Controller
      */
     public function destroy(Dictionary $dictionary)
     {
-        //
+        return $dictionary->delete();
     }
 }
