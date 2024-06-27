@@ -12,6 +12,8 @@ export function pagination(data, token, displayData) {
 
     $(".page-item:not(.disabled) .page-link").on("click", function () {
         const url = $(this).data("href");
+        $(".page-item").removeClass("active");
+        $(this).addClass("active");
         displayData(url, token);
     });
 }

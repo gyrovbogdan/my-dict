@@ -9,6 +9,7 @@ use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Sleep;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class DictionaryController extends Controller

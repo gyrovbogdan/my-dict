@@ -13,8 +13,8 @@ async function displayData(url, token) {
         data = await fetchData("api/dictionary", token);
     }
 
-    table(data);
     pagination(data, token, displayData);
+    table(data);
 
     deleteEvents(token, displayData, url);
     storeEvents(token, displayData);

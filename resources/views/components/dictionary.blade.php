@@ -7,7 +7,7 @@
 </style>
 
 <div>
-    <table id='dict' class="table">
+    <table id='dict' class="table" style="height: 500px">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -17,18 +17,20 @@
                 </td>
             </tr>
 
-            <th scope="row">...<input hidden name="id"></th>
-            <td><input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2" maxlength="20"
-                    data-lang="ru">
-            </td>
-            <td><input name="translation" placeholder="Transtation..." class="text en-text new-text" minlength="2"
-                    maxlength="20" data-lang="en"></td>
-            <td class="p-0" style="width: 30px; height: 30px;">
-            </td>
+            <tr>
+                <th scope="row">...<input hidden name="id"></th>
+                <td><input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2"
+                        maxlength="20" data-lang="ru">
+                </td>
+                <td><input name="translation" placeholder="Transtation..." class="text en-text new-text" minlength="2"
+                        maxlength="20" data-lang="en"></td>
+                <td class="p-0" style="width: 30px; height: 30px;">
+                </td>
+            </tr>
         </thead>
         <tbody id='dictionary-body'>
-            <tr>
-            </tr>
         </tbody>
+        <tr>
+        </tr>
     </table>
 </div>
