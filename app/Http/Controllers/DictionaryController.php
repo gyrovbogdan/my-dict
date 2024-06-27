@@ -10,7 +10,7 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Sleep;
-use Stichoza\GoogleTranslate\GoogleTranslate;
+use App\Services\DictionaryService;
 
 class DictionaryController extends Controller
 {
@@ -19,20 +19,7 @@ class DictionaryController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->id();
-        $dictionaries = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
-
-        $total = $dictionaries->total();
-        $perPage = $dictionaries->perPage();
-        $currentPage = $dictionaries->currentPage();
-        $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
-
-        $dictionaries->getCollection()->transform(function ($item, $index) use ($startIndex) {
-            $item->number = $startIndex - $index;
-            return $item;
-        });
-
-        return $dictionaries;
+        return DictionaryService::getDictionary();
     }
 
     /**
@@ -40,31 +27,7 @@ class DictionaryController extends Controller
      */
     public function store(StoreDictionaryRequest $request)
     {
-        $word = '';
-        $translation = '';
-        extract($request->only(['text', 'lang']));
-
-        $tr = new GoogleTranslate();
-        if ($lang == 'ru') {
-            $word = $text;
-            $translation = $tr->setSource($lang)->setTarget('en')->translate($text);
-        } else {
-            $translation = $text;
-            $word = $tr->setSource($lang)->setTarget('ru')->translate($text);
-        }
-
-        $user_id = auth()->id();
-        $user = User::findOrFail($user_id);
-        $dictionary = $user->dictionary()->create(compact('word', 'translation'));
-        return $dictionary;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Dictionary $dictionary)
-    {
-        //
+        return DictionaryService::storeDictionary($request);
     }
 
     /**
@@ -72,18 +35,7 @@ class DictionaryController extends Controller
      */
     public function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
     {
-        $word = '';
-        $translation = '';
-        $tr = new GoogleTranslate();
-        extract($request->only(['text', 'lang']));
-        if ($lang == 'ru') {
-            $word = $text;
-            $translation = $tr->setSource($lang)->setTarget('en')->translate($text);
-        } else {
-            $translation = $text;
-            $word = $tr->setSource($lang)->setTarget('ru')->translate($text);
-        }
-        $dictionary->update(compact('word', 'translation'));
+        return DictionaryService::updateDictionary($request, $dictionary);
     }
 
     /**

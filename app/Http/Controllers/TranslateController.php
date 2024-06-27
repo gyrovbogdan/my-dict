@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use App\Http\Requests\TranslateRequest;
 
 class TranslateController extends Controller
 {
-    public function index(Request $request)
+    public function index(TranslateRequest $request)
     {
-        $tr = new GoogleTranslate();
-        extract($request->only(['source', 'target', 'text']));
-        $result = $tr->setSource($source)->setTarget($target)->translate($text);
-        // $result = "Перевод";
-        return [$result];
+        extract($request->only(['text', 'target', 'source']));
+        return [GoogleTranslate::trans($text, $target, $source)];
     }
 }

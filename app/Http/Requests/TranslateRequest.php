@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateDictionaryRequest extends FormRequest
+class TranslateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +22,9 @@ class UpdateDictionaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'text' => 'required|string|min:1|max:20',
-            'lang' => 'required|string|in:ru,en'
+            'source' => 'required|in:ru,en',
+            'target' => 'required|in:ru,en',
+            'text' => 'required|string|min:1|max:20'
         ];
     }
 }

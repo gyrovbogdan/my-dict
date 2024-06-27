@@ -18,7 +18,7 @@
                 @include('components.api-token')
                 @include('components.dictionary')
                 @include('components.pagination')
-                @vite('public/js/home/main.js')
+                @vite('resources/js/home/main.js')
             </div>
         </div>
     </div>

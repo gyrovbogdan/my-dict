@@ -22,7 +22,7 @@ class StoreDictionaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'text' => 'required|string|min:2|max:20',
+            'text' => 'required|string|min:1|max:20',
             'lang' => 'required|string|in:ru,en'
         ];
     }
