@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-                    <div class="card-body">
-                        Добро пожаловать в Ваш Словарь. Здесь вы можете записывать слова и они всегда будут у вас под рукой!
-                        Введите новое слово и нажмите "Enter", чтобы оно сохранилось. Вы можете вводить слова на русском
-                        языке
-                        в первую колонку и на английском во вторую. После того как вы вписали слово нажмите "Enter", чтобы
-                        сохранить
-                        его или кликните мышью в свободное место, чтобы отменить ввод.
-                    </div>
-                </div>
-                @include('components.api-token')
-                @include('components.dictionary')
-                @include('components.pagination')
-                @vite('resources/js/home/main.js')
-            </div>
-        </div>
-    </div>
-@endsection
+    <div class="d-flex no-wrap container">
+
+        @include('components.article-card', [
+            'image' =>
+                'https://images.unsplash.com/photo-1594904351111-a072f80b1a71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            'title' => 'IT-слова',
+            'text' =>
+                'Знание ключевых IT-слов помогает лучше понимать технологические процессы и эффективно взаимодействовать в профессиональной среде. Здесь вы найдете переводы и пояснения наиболее распространенных IT-слов.',
+            'caption' => 'Обновлено 3 минуты назад',
+        ])
+
+        @include('components.table')
+
+        @include('components.article-card', [
+            'image' =>
+                'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            'title' => 'IT-слова',
+            'text' =>
+                'Знание ключевых IT-слов помогает лучше понимать технологические процессы и эффективно взаимодействовать в профессиональной среде. Здесь вы найдете переводы и пояснения наиболее распространенных IT-слов.',
+            'caption' => 'Обновлено 3 минуты назад',
+        ])
+    @endsection

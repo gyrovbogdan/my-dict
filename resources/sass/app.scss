@@ -11,3 +11,7 @@
 .unselectable {
     user-select: none;
 }
+
+.blur {
+    filter: blur(2px);
+}
