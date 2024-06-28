@@ -1,7 +1,8 @@
 <?php
 
-use Barryvdh\Debugbar\Facades\Debugbar;
+use App\Http\Controllers\Web\ArticleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::middleware('auth:sanctum')->get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth:sanctum')->get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('article', ArticleController::class);

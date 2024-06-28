@@ -1,4 +1,4 @@
-<div class="d-flex flex-column mx-3">
+<div class="d-flex m-3">
     <div class="row justify-content-center">
         <div class="">
             <div class="card">

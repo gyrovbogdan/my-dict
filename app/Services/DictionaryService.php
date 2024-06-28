@@ -15,19 +15,19 @@ class DictionaryService
     public static function getDictionary()
     {
         $user_id = auth()->id();
-        $dictionaries = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
+        $dictionary = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
 
-        $total = $dictionaries->total();
-        $perPage = $dictionaries->perPage();
-        $currentPage = $dictionaries->currentPage();
+        $total = $dictionary->total();
+        $perPage = $dictionary->perPage();
+        $currentPage = $dictionary->currentPage();
         $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
 
-        $dictionaries->getCollection()->transform(function ($item, $index) use ($startIndex) {
+        $dictionary->getCollection()->transform(function ($item, $index) use ($startIndex) {
             $item->number = $startIndex - $index;
             return $item;
         });
 
-        return $dictionaries;
+        return $dictionary;
     }
 
     public static function storeDictionary(StoreDictionaryRequest $request)

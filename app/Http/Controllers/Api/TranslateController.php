@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use App\Http\Requests\TranslateRequest;
+use App\Http\Controllers\Controller;
 
 class TranslateController extends Controller
 {

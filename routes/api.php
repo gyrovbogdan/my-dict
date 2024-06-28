@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\DictionaryController;
-use App\Http\Controllers\TranslateController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\DictionaryController;
+use App\Http\Controllers\Api\TranslateController;
 
 /*
 |--------------------------------------------------------------------------

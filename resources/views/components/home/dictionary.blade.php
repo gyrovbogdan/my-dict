@@ -1,11 +1,3 @@
-<style>
-    input.text {
-        background-color: transparent;
-        border: 0;
-        font-size: 1em;
-    }
-</style>
-
 <div>
     <table id='dict' class="table" style="height: 500px">
         <thead>
