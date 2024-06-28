@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             User::factory()->hasDictionary(100)->create([
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
+                'is_admin' => true
             ]);
         }
         Article::factory(10)->hasDictionary(20)->create();

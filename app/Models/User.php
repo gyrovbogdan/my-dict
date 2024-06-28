@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Dictionary::class);
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->getAttribute('is_admin');
+    }
 }
