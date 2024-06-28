@@ -12,7 +12,7 @@
             'caption' => 'Обновлено 3 минуты назад',
         ])
 
-        @include('components.table')
+        @include('components.home.table')
 
         @include('components.article-card', [
             'image' =>
