@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Article;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,14 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->hasDictionary(100)->create();
-        \App\Models\User::factory()->hasDictionary(100)->create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-        ]);
+        User::factory(10)->hasDictionary(100)->create();
+
+        if (User::where('email', 'admin@admin.com')->count() == 0) {
+            User::factory()->hasDictionary(100)->create([
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+            ]);
+        }
+        Article::factory(10)->hasDictionary(20)->create();
 
 
-        // \App\Models\User::factory()->create([
+
+        // \App\Models\User::factory()->create([ё1236
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
