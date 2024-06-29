@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use App\Services\PaginationService;
 
 class ArticleController extends Controller
 {
@@ -39,18 +40,7 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $dictionary = $article->dictionary()->orderByDesc('id')->paginate(10);
-
-        $total = $dictionary->total();
-        $perPage = $dictionary->perPage();
-        $currentPage = $dictionary->currentPage();
-        $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
-
-        $dictionary->getCollection()->transform(function ($item, $index) use ($startIndex) {
-            $item->number = $startIndex - $index;
-            return $item;
-        });
-
-        return $dictionary;
+        return PaginationService::addNumbers($dictionary);
     }
 
     /**

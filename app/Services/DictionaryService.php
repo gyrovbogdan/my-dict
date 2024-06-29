@@ -16,18 +16,7 @@ class DictionaryService
     {
         $user_id = auth()->id();
         $dictionary = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
-
-        $total = $dictionary->total();
-        $perPage = $dictionary->perPage();
-        $currentPage = $dictionary->currentPage();
-        $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
-
-        $dictionary->getCollection()->transform(function ($item, $index) use ($startIndex) {
-            $item->number = $startIndex - $index;
-            return $item;
-        });
-
-        return $dictionary;
+        return PaginationService::addNumbers($dictionary);
     }
 
     public static function storeDictionary(StoreDictionaryRequest $request)
@@ -36,7 +25,6 @@ class DictionaryService
         $translationPair = DictionaryService::getTranslationPair($text, $lang);
 
         $user = auth()->user()->get();
-        debugbar()->info($user);
         $dictionary = $user->dictionary()->create($translationPair);
 
         return $dictionary;
