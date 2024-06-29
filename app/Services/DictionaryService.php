@@ -12,30 +12,30 @@ use App\Http\Requests\StoreDictionaryRequest;
 
 class DictionaryService
 {
-    public static function getDictionary()
+
+    public static function get()
     {
-        $user_id = auth()->id();
-        $dictionary = Dictionary::where('user_id', $user_id)->orderByDesc('id')->paginate(10);
+        $dictionary = auth()->user()->dictionary()->orderByDesc('id')->paginate(10);
         return PaginationService::addNumbers($dictionary);
     }
 
-    public static function storeDictionary(StoreDictionaryRequest $request)
+    public static function store(StoreDictionaryRequest $request)
     {
         extract($request->only(['text', 'lang']));
         $translationPair = DictionaryService::getTranslationPair($text, $lang);
-
-        $user = auth()->user()->get();
-        $dictionary = $user->dictionary()->create($translationPair);
-
-        return $dictionary;
+        return auth()->user()->dictionary()->create($translationPair);
     }
 
-    public static function updateDictionary(UpdateDictionaryRequest $request, Dictionary $dictionary)
+    public static function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
     {
         extract($request->only(['text', 'lang']));
         $translationPair = DictionaryService::getTranslationPair($text, $lang);
-
         return $dictionary->update($translationPair);
+    }
+
+    public static function delete(Dictionary $dictionary)
+    {
+        return $dictionary->delete();
     }
 
     private static function getTranslationPair(string $text, string $lang)

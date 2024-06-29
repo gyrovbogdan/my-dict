@@ -15,7 +15,7 @@ class DictionaryController extends Controller
      */
     public function index()
     {
-        return DictionaryService::getDictionary();
+        return DictionaryService::get();
     }
 
     /**
@@ -23,7 +23,7 @@ class DictionaryController extends Controller
      */
     public function store(StoreDictionaryRequest $request)
     {
-        return DictionaryService::storeDictionary($request);
+        return DictionaryService::store($request);
     }
 
     /**
@@ -31,7 +31,7 @@ class DictionaryController extends Controller
      */
     public function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
     {
-        return DictionaryService::updateDictionary($request, $dictionary);
+        return DictionaryService::update($request, $dictionary);
     }
 
     /**
@@ -39,6 +39,6 @@ class DictionaryController extends Controller
      */
     public function destroy(Dictionary $dictionary)
     {
-        return $dictionary->delete();
+        return DictionaryService::delete($dictionary);
     }
 }
