@@ -10,6 +10,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    public $fillable = ['title', 'text', 'image'];
+
     public function dictionary(): HasMany
     {
         return $this->hasMany(ArticleDictionary::class);
