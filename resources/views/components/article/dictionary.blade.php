@@ -1,4 +1,3 @@
-<div>
     <table id='dict' class="table" style="height: 500px">
         <thead>
             <tr>
@@ -11,9 +10,7 @@
 
         </thead>
         <tbody id='dictionary-body'>
-
         </tbody>
         <tr>
         </tr>
     </table>
-</div>
