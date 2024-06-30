@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Article;
+use App\Services\ArticleService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,11 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderByDesc('id')->paginate(10);
-        $articles->transform(function ($item, $key) {
-            $timeAgo = Carbon::parse($item['updated_at'])->diffForHumans();
-            $item['caption'] = "Обновлено $timeAgo";
-            return $item;
-        });
+        $articles = ArticleService::addTimeAgo($articles);
         return view('pages.articles', compact('articles'));
     }
 
