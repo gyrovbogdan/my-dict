@@ -16,8 +16,9 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderByDesc('id')->paginate(10);
-        $articles = ArticleService::addTimeAgo($articles);
-        return view('pages.articles', compact('articles'));
+        $articles = ArticleService::transform($articles);
+        $isAdmin = optional(auth()->user())->isAdmin();
+        return view('pages.article.index', compact('articles', 'isAdmin'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.article.create');
     }
 
     /**
@@ -33,7 +34,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'text' => 'required|string',
+            'image' => 'required|image'
+        ]);
+
+        $path = $request->file('image')->store('public');
+        $validatedData['image'] = $path;
+
+        $article = Article::create($validatedData);
+
+        return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
     }
 
     /**
@@ -41,7 +53,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('pages.article', compact('article'));
+        $isAdmin = optional(auth()->user())->isAdmin();
+        return view('pages.article.show', compact('article', 'isAdmin'));
     }
 
     /**
@@ -49,7 +62,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('pages.article.edit');
     }
 
     /**
@@ -57,7 +70,15 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'string',
+            'text' => 'string',
+            'image' => 'image'
+        ]);
+
+        $article->update($validatedData);
+
+        return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
     }
 
     /**
@@ -65,6 +86,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->action([ArticleController::class, 'index']);
+
     }
 }

@@ -20,5 +20,5 @@ use App\Http\Controllers\Api\TranslateController;
 
 Route::middleware('auth:sanctum')->resource('dictionary', DictionaryController::class);
 
-Route::get('/article{article}', [ArticleController::class, 'show']);
+Route::get('/article/{article}', [ArticleController::class, 'show']);
 Route::get('/translate', [TranslateController::class, 'index']);
