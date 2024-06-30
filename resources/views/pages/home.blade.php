@@ -3,7 +3,7 @@
 @section('content')
     <div class="container col-6">
 
-        @include('components.home.table')
+        @include('components.home.table', compact('token'))
 
         <div class="row">
             <div class="col">

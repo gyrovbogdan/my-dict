@@ -14,7 +14,7 @@
                     его или кликните мышью в свободное место, чтобы отменить ввод.
                 </div>
             </div>
-            @include('components.home.api-token')
+            @include('components.home.api-token', compact('token'))
             @include('components.home.dictionary')
             @include('components.home.pagination')
             @vite('resources/js/home/main.js')
