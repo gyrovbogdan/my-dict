@@ -14,10 +14,19 @@
 
 .blur {
     filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 input.text {
     background-color: transparent;
     border: 0;
     font-size: 1em;
+}
+
+.card-img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 600px;
+    height: 300px;
 }

@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderByDesc('id')->get();
+        $articles = Article::orderByDesc('id')->paginate(10);
         $articles->transform(function ($item, $key) {
             $timeAgo = Carbon::parse($item['updated_at'])->diffForHumans();
             $item['caption'] = "Обновлено $timeAgo";

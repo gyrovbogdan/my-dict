@@ -1,8 +1,8 @@
-<a class="m-3" href="{{ action([App\Http\Controllers\Web\ArticleController::class, 'show'], ['article' => $id]) }}">
-    <div class="card text-bg-light text-light border-light-subtle">
-        <img src="{{ $image }}" class="card-img blur" alt="..." style="width: 600px; height: 300px;">
+<a class="card text-bg-light text-dark border-dark m-3"
+    href="{{ action([App\Http\Controllers\Web\ArticleController::class, 'show'], ['article' => $id]) }}">
+    <div style="background-image: url({{ $image }});" class="card-img" alt="...">
         <div class="card-img-overlay">
-            <div class="card-header border-light-subtle">
+            <div class="card-header border-dark">
                 <h5 class="card-title">{{ $title }}</h5>
             </div>
             <div class="card-body">

@@ -5,5 +5,8 @@
         @foreach ($articles as $article)
             @include('components.articles.article-card', $article)
         @endforeach
+        <div class="d-flex">
+            {!! $articles->links() !!}
+        </div>
     </div>
 @endsection
