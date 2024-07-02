@@ -1,10 +1,9 @@
 <?php
 
 
-use App\Http\Controllers\Api\ArticleController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ArticleDictionaryController;
+use App\Http\Controllers\Api\UserDictionaryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\DictionaryController;
 use App\Http\Controllers\Api\TranslateController;
 
 /*
@@ -18,7 +17,8 @@ use App\Http\Controllers\Api\TranslateController;
 |
 */
 
-Route::middleware('auth:sanctum')->resource('dictionary', DictionaryController::class);
+Route::middleware('auth:sanctum')->resource('dictionary', UserDictionaryController::class);
+Route::resource('article.dictionary', ArticleDictionaryController::class);
 
-Route::get('/article/{article}', [ArticleController::class, 'show']);
 Route::get('/translate', [TranslateController::class, 'index']);
+

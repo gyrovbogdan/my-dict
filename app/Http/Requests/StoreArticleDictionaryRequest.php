@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Services\DictionaryService;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDictionaryRequest extends FormRequest
+class StoreArticleDictionaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,9 +22,6 @@ class StoreDictionaryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'text' => 'required|string|min:1|max:20',
-            'lang' => 'required|string|in:ru,en'
-        ];
+        return DictionaryService::$rules;
     }
 }

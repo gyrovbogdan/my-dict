@@ -10,6 +10,9 @@ class ArticleDictionary extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    public $fillable = ['word', 'translation'];
+
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);

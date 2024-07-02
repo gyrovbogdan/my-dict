@@ -6,7 +6,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class PaginationService
 {
-    public static function addNumbers(LengthAwarePaginator $paginated)
+    public static function numberInstances(LengthAwarePaginator $paginated)
     {
         $total = $paginated->total();
         $perPage = $paginated->perPage();

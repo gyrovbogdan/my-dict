@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StoreDictionaryRequest;
-use App\Http\Requests\UpdateDictionaryRequest;
-use App\Models\Dictionary;
+use App\Http\Requests\StoreUserDictionaryRequest;
+use App\Http\Requests\UpdateUserDictionaryRequest;
+use App\Models\UserDictionary;
 use App\Services\DictionaryService;
 use App\Http\Controllers\Controller;
 
-class DictionaryController extends Controller
+class UserDictionaryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return DictionaryService::get();
+        return DictionaryService::get(auth()->user());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDictionaryRequest $request)
+    public function store(StoreUserDictionaryRequest $request)
     {
-        return DictionaryService::store($request);
+        return DictionaryService::store($request, auth()->user());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
+    public function update(UpdateUserDictionaryRequest $request, UserDictionary $dictionary)
     {
         return DictionaryService::update($request, $dictionary);
     }
@@ -37,7 +37,7 @@ class DictionaryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dictionary $dictionary)
+    public function destroy(UserDictionary $dictionary)
     {
         return DictionaryService::delete($dictionary);
     }

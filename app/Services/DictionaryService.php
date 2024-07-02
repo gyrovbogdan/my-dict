@@ -1,44 +1,44 @@
 <?php
 
-
 namespace App\Services;
 
-use App\Http\Requests\UpdateDictionaryRequest;
-use App\Models\Dictionary;
-use App\Models\User;
+use Illuminate\Foundation\Http\FormRequest;
 use Stichoza\GoogleTranslate\GoogleTranslate;
-use App\Http\Requests\StoreDictionaryRequest;
 
 
 class DictionaryService
 {
+    public static $rules = [
+        'text' => 'required|string|min:1|max:20',
+        'lang' => 'required|string|in:ru,en'
+    ];
 
-    public static function get()
+    public static function get($owner)
     {
-        $dictionary = auth()->user()->dictionary()->orderByDesc('id')->paginate(10);
-        return PaginationService::addNumbers($dictionary);
+        $dictionary = $owner->dictionary()->paginate(10);
+        return PaginationService::numberInstances($dictionary);
     }
 
-    public static function store(StoreDictionaryRequest $request)
+    public static function store(FormRequest $request, $owner)
     {
         extract($request->only(['text', 'lang']));
         $translationPair = DictionaryService::getTranslationPair($text, $lang);
-        return auth()->user()->dictionary()->create($translationPair);
+        return $owner->dictionary()->create($translationPair);
     }
 
-    public static function update(UpdateDictionaryRequest $request, Dictionary $dictionary)
+    public static function update(FormRequest $request, $dictionary)
     {
         extract($request->only(['text', 'lang']));
         $translationPair = DictionaryService::getTranslationPair($text, $lang);
         return $dictionary->update($translationPair);
     }
 
-    public static function delete(Dictionary $dictionary)
+    public static function delete($dictionary)
     {
         return $dictionary->delete();
     }
 
-    private static function getTranslationPair(string $text, string $lang)
+    public static function getTranslationPair(string $text, string $lang)
     {
         $word = '';
         $translation = '';

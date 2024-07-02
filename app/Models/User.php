@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function dictionary(): HasMany
     {
-        return $this->hasMany(Dictionary::class);
+        return $this->hasMany(UserDictionary::class);
     }
 
     public function isAdmin(): bool

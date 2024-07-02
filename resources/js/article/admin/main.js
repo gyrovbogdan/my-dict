@@ -15,7 +15,7 @@ async function displayData(url, token) {
 
 async function init() {
     const articleId = $("#article-id").data("id");
-    const url = `/api/article/${articleId}`;
+    const url = `/api/article/${articleId}/dictionary`;
     const token = $("#api-token").data("apiToken");
     const csrfToken = $('meta[name="csrf-token"]').attr("content");
     deleteArticleEvents(articleId, csrfToken);
