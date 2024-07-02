@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Article;
 use App\Services\ArticleService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -40,9 +39,7 @@ class ArticleController extends Controller
             'image' => 'required|image'
         ]);
 
-        $path = $request->file('image')->store('public');
-        $validatedData['image'] = $path;
-
+        $validatedData['image'] = $request->file('image')->store('public');
         $article = Article::create($validatedData);
 
         return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
@@ -62,7 +59,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('pages.article.edit');
+        return view('pages.article.edit', compact('article'));
     }
 
     /**
@@ -76,6 +73,7 @@ class ArticleController extends Controller
             'image' => 'image'
         ]);
 
+        $validatedData['image'] = $request->file('image')->store('public');
         $article->update($validatedData);
 
         return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
