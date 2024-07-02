@@ -2,8 +2,9 @@
     <div class="row justify-content-center">
         @if ($isAdmin)
             <div class="btn-group my-3" role="group" aria-label="Basic mixed styles example">
-                <button type="button" class="btn btn-info">Изменить статью</button>
-                <button type="button" class="btn btn-danger">Удалить</button>
+                <a href="{{ action([App\Controllers\Web\ArticleController::class, 'edit'], ['article' => $article['id']]) }}"
+                    class="btn btn-info">Изменить статью</button>
+                    <button type="button" class="btn btn-danger" id="delete-article">Удалить</button>
             </div>
         @endif
         <div hidden id="article-id" data-id="{{ $article['id'] }}"></div>
