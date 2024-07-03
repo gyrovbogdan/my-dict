@@ -1,4 +1,4 @@
-import { deleteData } from "./api";
+import { deleteData } from "../api";
 
 export function deleteEvents(token, displayFunc, url) {
     $(".delete-button").on("click", function () {

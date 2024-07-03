@@ -1,4 +1,4 @@
-import { storeData } from "./api";
+import { storeData } from "../api";
 
 export function storeEvents(token, displayFunc) {
     $(".new-text").on("keydown", function (e) {

@@ -1,10 +1,10 @@
 import { fetchData } from "./api";
-import { table } from "./table";
-import { pagination } from "./pagination";
-import { translationEvents } from "./translation";
-import { updateEvents } from "./update";
-import { storeEvents } from "./store";
-import { deleteEvents } from "./delete";
+import { table } from "./display/table";
+import { pagination } from "./display/pagination";
+import { translationEvents } from "./events/translation";
+import { updateEvents } from "./events/update";
+import { storeEvents } from "./events/store";
+import { deleteEvents } from "./events/delete";
 
 async function displayData(url, token) {
     let data = await fetchData(url, token);

@@ -1,4 +1,4 @@
-import { fetchTranslation } from "./api";
+import { fetchTranslation } from "../api";
 
 export function translationEvents() {
     let debounceTimer;

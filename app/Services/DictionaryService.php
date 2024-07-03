@@ -15,7 +15,7 @@ class DictionaryService
 
     public static function get($owner)
     {
-        $dictionary = $owner->dictionary()->paginate(10);
+        $dictionary = $owner->dictionary()->orderByDesc('id')->paginate(10);
         return PaginationService::numberInstances($dictionary);
     }
 

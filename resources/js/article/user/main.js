@@ -1,6 +1,6 @@
 import { fetchData } from "./api";
-import { table } from "./table";
-import { pagination } from "./pagination";
+import { table } from "./display/table";
+import { pagination } from "./display/pagination";
 // import {add to your dictionary events}
 
 async function displayData(url, token) {

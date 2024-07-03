@@ -1,4 +1,4 @@
-import { updateData } from "./api";
+import { updateData } from "../api";
 
 export function updateEvents(token) {
     $(".table-text").on("focus", function () {

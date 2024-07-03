@@ -38,7 +38,7 @@ class ArticleDictionaryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArticleDictionaryRequest $request, ArticleDictionary $dictionary)
+    public function update(UpdateArticleDictionaryRequest $request, Article $article, ArticleDictionary $dictionary)
     {
         return DictionaryService::update($request, $dictionary);
     }
@@ -46,7 +46,7 @@ class ArticleDictionaryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ArticleDictionary $dictionary)
+    public function destroy(Article $article, ArticleDictionary $dictionary)
     {
         return DictionaryService::delete($dictionary);
     }
