@@ -16,7 +16,6 @@
             </div>
             @include('components.home.api-token', compact('token'))
             @include('components.home.dictionary')
-            @include('components.home.pagination')
             @vite('resources/js/home/main.js')
         </div>
 

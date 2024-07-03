@@ -1,3 +1,3 @@
 @auth
-    <div id='api-token' hidden data-api-token={{ auth()->user()->createToken('personal-token')->plainTextToken }}></div>
+    <div id='api-token' hidden data-token={{ $token }}></div>
 @endauth

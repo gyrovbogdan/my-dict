@@ -1,51 +1,60 @@
-export function fetchData(url, token) {
-    return $.ajax({
-        url: url,
-        method: "get",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-    });
+export class Api {
+    constructor(token, url, translateUrl) {
+        this.token = token;
+        this.url = url;
+        this.translateUrl = translateUrl;
+    }
+
+    get(url) {
+        return $.ajax({
+            url: url,
+            method: "GET",
+        });
+    }
+
+    update(id, text, lang) {
+        return $.ajax(
+            this.withToken({
+                url: `${this.url}/${id}`,
+                method: "PATCH",
+                data: { text, lang },
+            })
+        );
+    }
+
+    delete(id) {
+        return $.ajax(
+            this.withToken({
+                url: `${this.url}/${id}`,
+                method: "DELETE",
+            })
+        );
+    }
+
+    store(text, lang) {
+        return $.ajax(
+            this.withToken({
+                url: this.url,
+                method: "POST",
+                data: { text, lang },
+            })
+        );
+    }
+
+    translate(source, target, text) {
+        return $.ajax({
+            url: this.translateUrl,
+            method: "GET",
+            data: { source, target, text },
+        });
+    }
+
+    withToken(options) {
+        options["headers"] = {
+            Authorization: "Bearer " + this.token,
+        };
+        return options;
+    }
 }
 
-export function fetchTranslation(source, target, text) {
-    return $.ajax({
-        url: "api/translate",
-        method: "get",
-        data: { source, target, text },
-    });
-}
-
-export function updateData(id, text, lang, token) {
-    return $.ajax({
-        url: `api/dictionary/${id}?${$.param({ text, lang })}`,
-        method: "patch",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-    });
-}
-
-export function storeData(text, lang, token) {
-    return $.ajax({
-        url: `api/dictionary?${$.param({ text, lang })}`,
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-    });
-}
-
-export function deleteData(id, token) {
-    return $.ajax({
-        url: `api/dictionary/${id}`,
-        method: "delete",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-    });
-}
+export default Api;

@@ -1,20 +1,12 @@
-import { fetchData } from "./api";
-import { table } from "./display/table";
-import { pagination } from "./display/pagination";
-// import {add to your dictionary events}
+import Dictionary from "./dictionary.js";
+import Api from "./api.js";
 
-async function displayData(url, token) {
-    let data = await fetchData(url, token);
-    pagination(data, token, displayData);
-    table(data);
-    // add to your dictionary events ()
-}
+const token = $("#api-token").data("token");
+const articleId = $("#article-id").data("id");
+const url = `/api/article/${articleId}/dictionary`;
+const translateUrl = "/api/translate";
 
-async function init() {
-    const articleId = $("#article-id").data("id");
-    const url = `/api/article/${articleId}/dictionary`;
-    const token = $("#api-token").data("apiToken");
-    await displayData(url, token);
-}
+const api = new Api(token, url, translateUrl);
+const dictionary = new Dictionary(api);
 
-$(init);
+$(dictionary.init);

@@ -50,8 +50,14 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $isAdmin = optional(auth()->user())->isAdmin();
-        return view('pages.article.show', compact('article', 'isAdmin'));
+        $user = auth()->user();
+        $isAdmin = null;
+        $token = null;
+        if ($user) {
+            $isAdmin = $user->isAdmin();
+            $token = $user->createToken('personal-token')->plainTextToken;
+        }
+        return view('pages.article.show', compact('article', 'isAdmin', 'token'));
     }
 
     /**
@@ -84,6 +90,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        debugbar()->info($article);
         $article->delete();
         return redirect()->action([ArticleController::class, 'index']);
 

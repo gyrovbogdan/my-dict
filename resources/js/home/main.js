@@ -1,31 +1,11 @@
-import { fetchData } from "./api";
-import { table } from "./display/table";
-import { pagination } from "./display/pagination";
-import { translationEvents } from "./events/translation";
-import { updateEvents } from "./events/update";
-import { storeEvents } from "./events/store";
-import { deleteEvents } from "./events/delete";
+import Dictionary from "./dictionary.js";
+import Api from "./api.js";
 
-async function displayData(url, token) {
-    let data = await fetchData(url, token);
+const token = $("#api-token").data("token");
+const url = `/api/dictionary`;
+const translateUrl = "/api/translate";
 
-    if (data["data"].length == 0) {
-        data = await fetchData("api/dictionary", token);
-    }
+const api = new Api(token, url, translateUrl);
+const dictionary = new Dictionary(api);
 
-    pagination(data, token, displayData);
-    table(data);
-
-    deleteEvents(token, displayData, url);
-    storeEvents(token, displayData);
-    updateEvents(token);
-    translationEvents();
-}
-
-async function init() {
-    const url = "api/dictionary";
-    const token = $("#api-token").data("apiToken");
-    await displayData(url, token);
-}
-
-$(init);
+$(dictionary.init);

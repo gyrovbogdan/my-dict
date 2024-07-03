@@ -20,9 +20,14 @@
                 </td>
             </tr>
         </thead>
-        <tbody id='dictionary-body'>
+        <tbody id='table'>
         </tbody>
         <tr>
         </tr>
     </table>
 </div>
+
+<nav>
+    <ul class="pagination" id='pagination'>
+    </ul>
+</nav>

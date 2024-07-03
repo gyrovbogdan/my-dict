@@ -4,11 +4,6 @@
             <div class="btn-group my-3" role="group" aria-label="Basic mixed styles example">
                 <a href="{{ action([App\Http\Controllers\Web\ArticleController::class, 'edit'], ['article' => $article['id']]) }}"
                     class="btn btn-info">Изменить статью</a>
-                {{-- <form method="POST"
-                    action="{{ action([App\Http\Controllers\Web\ArticleController::class, 'destroy'], ['article' => $article['id']]) }}">
-                    @method('DELETE')
-                    @csrf
-                </form> --}}
                 <button class="btn btn-danger" id="delete-article">Удалить</button>
             </div>
         @endif
@@ -19,9 +14,8 @@
                 {{ $article['text'] }}
             </div>
         </div>
-        @include('components.article.api-token')
+        @include('components.article.api-token', compact('token'))
         @include('components.article.dictionary')
-        @include('components.article.pagination')
         @if ($isAdmin)
             @vite('resources/js/article/admin/main.js')
         @else
