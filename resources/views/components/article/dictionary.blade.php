@@ -6,17 +6,17 @@
             <th scope="col">Перевод</th>
             <td class="p-0" style="width: 30px; height: 30px;">
             </td>
-            @if ($isAdmin)
+            @admin
                 <td class="p-0" style="width: 30px; height: 30px;">
                 </td>
-            @endif
+            @endadmin
         </tr>
 
-        @if ($isAdmin)
+        @admin
             <tr>
                 <th scope="row">...<input hidden name="id"></th>
-                <td><input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2"
-                        maxlength="20" data-lang="ru">
+                <td><input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2" maxlength="20"
+                        data-lang="ru">
                 </td>
                 <td><input name="translation" placeholder="Transtation..." class="text en-text new-text" minlength="2"
                         maxlength="20" data-lang="en"></td>
@@ -25,7 +25,7 @@
                 <td>
                 </td>
             </tr>
-        @endif
+        @endadmin
 
     </thead>
     <tbody id='table'>

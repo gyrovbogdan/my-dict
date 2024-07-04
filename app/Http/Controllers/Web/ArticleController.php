@@ -16,8 +16,7 @@ class ArticleController extends Controller
     {
         $articles = Article::orderByDesc('id')->paginate(10);
         $articles = ArticleService::transform($articles);
-        $isAdmin = optional(auth()->user())->isAdmin();
-        return view('pages.article.index', compact('articles', 'isAdmin'));
+        return view('pages.article.index', compact('articles'));
     }
 
     /**
@@ -50,14 +49,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $user = auth()->user();
-        $isAdmin = null;
-        $token = null;
-        if ($user) {
-            $isAdmin = $user->isAdmin();
-            $token = $user->createToken('personal-token')->plainTextToken;
-        }
-        return view('pages.article.show', compact('article', 'isAdmin', 'token'));
+        return view('pages.article.show', compact('article'));
     }
 
     /**

@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $token = auth()->user()->createToken('personal-token')->plainTextToken;
-        return view('pages.home', compact('token'));
+        return view('pages.home');
     }
 }

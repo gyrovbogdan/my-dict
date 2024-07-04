@@ -4,7 +4,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
 
-                @include('components.home.api-token', compact('token'))
+                @api_token
+
                 @include('components.home.description')
                 @include('components.home.dictionary')
 
