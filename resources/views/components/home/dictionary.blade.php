@@ -28,6 +28,6 @@
 </div>
 
 <nav>
-    <ul class="pagination" id='pagination'>
+    <ul class="pagination justify-content-center" id='pagination'>
     </ul>
 </nav>
