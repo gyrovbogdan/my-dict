@@ -1,13 +1,13 @@
-<a class="card text-bg-light text-dark border-dark m-3"
+<a class="card mb-3 text-decoration-none"
     href="{{ action([App\Http\Controllers\Web\ArticleController::class, 'show'], ['article' => $id]) }}">
-    <div style="background-image: url({{ asset($image) }});" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <div class="card-header border-dark">
-                <h5 class="card-title">{{ $title }}</h5>
+    <div class="card-img" style="background-image: url({{ asset($image) }});">
+        <div class="card-content">
+            <p class="card-header text-center py-3 fs-4">{{ $title }}</p>
+            <div class="card-body h-100">
+                <p class="card-text fs-5">{{ $text }}</p>
             </div>
-            <div class="card-body">
-                <p class="card-text">{{ $text }}</p>
-                <p class="card-text"><small>{{ $caption }}</small></p>
+            <div class="card-footer text-body-secondary fs-5">
+                <p><small>{{ $caption }}</small></p>
             </div>
         </div>
     </div>
