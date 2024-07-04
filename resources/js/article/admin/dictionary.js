@@ -5,6 +5,7 @@ import {
     updateEventListeners,
     deleteEventListeners,
     translationEventListeners,
+    addToUserDictionaryEventListeners,
 } from "./events";
 
 class Dictionary {
@@ -34,6 +35,7 @@ class Dictionary {
         deleteEventListeners(this);
         storeEventListeners(this);
         translationEventListeners(this);
+        addToUserDictionaryEventListeners(this);
     }
 }
 

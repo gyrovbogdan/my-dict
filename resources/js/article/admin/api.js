@@ -31,10 +31,10 @@ export class Api {
         );
     }
 
-    store(text, lang) {
+    store(text, lang, url = this.url) {
         return $.ajax(
             this.withToken({
-                url: this.url,
+                url: url,
                 method: "POST",
                 data: { text, lang },
             })

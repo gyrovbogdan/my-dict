@@ -83,3 +83,12 @@ export function translationEventListeners(dictionary) {
         }, 300);
     });
 }
+
+export function addToUserDictionaryEventListeners(dictionary) {
+    $(".add-button").on("click", function () {
+        const $tr = $(this).closest("tr");
+        const text = $tr.find("input[name=word]").val();
+        const lang = "ru";
+        dictionary.api.store(text, lang, "/api/dictionary");
+    });
+}
