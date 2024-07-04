@@ -1,4 +1,6 @@
 @admin
-    <a type="button" class="btn btn-primary mb-3" href="{{ route('article.create') }}">Создать новую
-        статью</a>
+    <div class="text-center">
+        <a type="button" class="btn btn-secondary mb-3 w-100" href="{{ route('article.create') }}">Создать новую
+            статью</a>
+    </div>
 @endadmin
