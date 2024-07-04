@@ -6,10 +6,12 @@ export class Api {
     }
 
     get(url) {
-        return $.ajax({
-            url: url,
-            method: "GET",
-        });
+        return $.ajax(
+            this.withToken({
+                url: url,
+                method: "GET",
+            })
+        );
     }
 
     update(id, text, lang) {

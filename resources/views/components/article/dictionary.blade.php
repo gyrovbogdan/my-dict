@@ -6,6 +6,10 @@
             <th scope="col">Перевод</th>
             <td class="p-0" style="width: 30px; height: 30px;">
             </td>
+            @if ($isAdmin)
+                <td class="p-0" style="width: 30px; height: 30px;">
+                </td>
+            @endif
         </tr>
 
         @if ($isAdmin)
@@ -17,6 +21,8 @@
                 <td><input name="translation" placeholder="Transtation..." class="text en-text new-text" minlength="2"
                         maxlength="20" data-lang="en"></td>
                 <td class="p-0" style="width: 30px; height: 30px;">
+                </td>
+                <td>
                 </td>
             </tr>
         @endif

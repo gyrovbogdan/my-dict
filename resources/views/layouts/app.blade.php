@@ -5,7 +5,7 @@
     @include('layouts.parts.head')
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column vh-100">
     <header>
         @include('layouts.parts.navbar')
     </header>
