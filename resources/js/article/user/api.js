@@ -26,6 +26,16 @@ export class Api {
         };
         return options;
     }
+
+    store(text, lang, url = this.url) {
+        return $.ajax(
+            this.withToken({
+                url: url,
+                method: "POST",
+                data: { text, lang },
+            })
+        );
+    }
 }
 
 export default Api;

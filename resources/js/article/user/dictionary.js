@@ -1,5 +1,9 @@
 import { renderTable, renderPagination } from "./render";
-import { paginationEventListeners, translationEventListeners } from "./events";
+import {
+    paginationEventListeners,
+    translationEventListeners,
+    addToUserDictionaryEventListeners,
+} from "./events";
 
 class Dictionary {
     constructor(api) {
@@ -18,13 +22,16 @@ class Dictionary {
     async display() {
         let data = await this.api.get(this.url);
         if (data.data.length == 0) data = await this.api.get(this.api.url);
-        renderTable(data);
+        const isAuth = this.api.token != null;
+        console.log(this.api.token != null);
+        renderTable(data, isAuth);
         renderPagination(data);
     }
 
     addEventListeners() {
         paginationEventListeners(this);
         translationEventListeners(this);
+        addToUserDictionaryEventListeners(this);
     }
 }
 

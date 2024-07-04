@@ -23,9 +23,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         Blade::directive('api_token', function () {
-            $token = optional(auth()->user())->createToken('personal-token')->plainTextToken;
-            return "<div id='api-token' hidden data-token=$token></div>";
+            return "<?php
+            \$user = auth()->user();
+            \$token = \$user ? \$user->createToken('personal-token')->plainTextToken : false;
+            echo '<div id=\"api-token\" hidden data-token=\"' . htmlspecialchars(\$token, ENT_QUOTES, 'UTF-8') . '\"></div>'; ?>";
         });
+
         Blade::if('admin', function () {
             return optional(auth()->user())->isAdmin();
         });

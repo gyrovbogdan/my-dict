@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
 
-                @api_token
+                @api_token()
 
                 @include('components.article.admin-buttons')
                 @include('components.article.description')
