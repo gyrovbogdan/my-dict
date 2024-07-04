@@ -42,7 +42,7 @@ class ArticleController extends Controller
         $validatedData['image'] = $request->file('image')->store('public');
         $article = Article::create($validatedData);
 
-        return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
+        return to_route('article.show', ['article' => $article->id]);
     }
 
     /**
@@ -82,7 +82,7 @@ class ArticleController extends Controller
         $validatedData['image'] = $request->file('image')->store('public');
         $article->update($validatedData);
 
-        return redirect()->action([ArticleController::class, 'show'], ['article' => $article->id]);
+        return to_route('article.show', ['article' => $article->id]);
     }
 
     /**
@@ -90,9 +90,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        debugbar()->info($article);
         $article->delete();
-        return redirect()->action([ArticleController::class, 'index']);
+        return to_route('article.index');
 
     }
 }
