@@ -14,8 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderByDesc('id')->paginate(10);
-        $articles = ArticleService::transform($articles);
+        $articles = ArticleService::get();
         return view('pages.article.index', compact('articles'));
     }
 
@@ -32,15 +31,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string',
-            'text' => 'required|string',
-            'image' => 'required|image'
-        ]);
-
-        $validatedData['image'] = $request->file('image')->store('public');
-        $article = Article::create($validatedData);
-
+        $article = ArticleService::store($request);
         return to_route('article.show', ['article' => $article->id]);
     }
 
@@ -65,15 +56,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $validatedData = $request->validate([
-            'title' => 'string',
-            'text' => 'string',
-            'image' => 'image'
-        ]);
-
-        $validatedData['image'] = $request->file('image')->store('public');
-        $article->update($validatedData);
-
+        $article = ArticleService::update($request, $article);
         return to_route('article.show', ['article' => $article->id]);
     }
 
@@ -82,7 +65,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article->delete();
+        ArticleService::delete($article);
         return to_route('article.index');
 
     }
