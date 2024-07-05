@@ -6,10 +6,12 @@ export class Api {
     }
 
     get(url) {
-        return $.ajax({
-            url: url,
-            method: "GET",
-        });
+        return $.ajax(
+            this.withToken({
+                url: url,
+                method: "GET",
+            })
+        );
     }
 
     update(id, text, lang) {
@@ -54,6 +56,17 @@ export class Api {
             Authorization: "Bearer " + this.token,
         };
         return options;
+    }
+
+    getUser() {
+        return $.ajax(
+            this.withToken({
+                url: "/api/user",
+                method: "GET",
+            })
+        )
+            .done((data) => data)
+            .fail(() => null);
     }
 }
 

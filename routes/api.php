@@ -17,6 +17,10 @@ use App\Http\Controllers\Api\TranslateController;
 |
 */
 
+Route::middleware('auth:sanctum')->get('/user', function () {
+    return auth()->user();
+});
+
 Route::middleware('auth:sanctum')->
     resource('dictionary', UserDictionaryController::class);
 

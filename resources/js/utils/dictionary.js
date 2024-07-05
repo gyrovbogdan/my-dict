@@ -9,15 +9,20 @@ import {
 } from "./events";
 
 class Dictionary {
-    constructor(api) {
+    constructor(api, mode = "dictionary") {
         this.api = api;
         this.url = api.url;
+        this.mode = mode;
         this.init = this.init.bind(this);
         this.display = this.display.bind(this);
         this.addEventListeners = this.addEventListeners.bind(this);
+        this.user = null;
     }
 
     async init() {
+        try {
+            this.user = await this.api.getUser();
+        } catch (error) {}
         await this.display();
         this.addEventListeners();
     }
@@ -25,7 +30,8 @@ class Dictionary {
     async display() {
         let data = await this.api.get(this.url);
         if (data.data.length == 0) data = await this.api.get(this.api.url);
-        renderTable(data);
+
+        renderTable(data, this.mode, this.user);
         renderPagination(data);
     }
 

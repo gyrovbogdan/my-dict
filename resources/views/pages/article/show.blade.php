@@ -11,12 +11,7 @@
                 @include('components.article.description')
                 @include('components.article.dictionary')
 
-                @admin
-                    @vite('resources/js/article/admin/main.js')
-                @else
-                    @vite('resources/js/article/user/main.js')
-                @endadmin
-
+                @vite('resources/js/pages/article.js')
 
             </div>
         </div>

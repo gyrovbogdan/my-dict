@@ -9,7 +9,7 @@
                 @include('components.home.description')
                 @include('components.home.dictionary')
 
-                @vite('resources/js/home/main.js')
+                @vite('resources/js/pages/home.js')
 
             </div>
         </div>
