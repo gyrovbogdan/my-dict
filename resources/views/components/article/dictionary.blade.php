@@ -4,12 +4,10 @@
             <th scope="col">#</th>
             <th scope="col">Слово</th>
             <th scope="col">Перевод</th>
-            <td class="p-0" style="width: 30px; height: 30px;">
+            <td class="p-0">
             </td>
-            @admin
-                <td class="p-0" style="width: 30px; height: 30px;">
-                </td>
-            @endadmin
+            <td class="p-0">
+            </td>
         </tr>
 
         @admin
@@ -20,7 +18,7 @@
                 </td>
                 <td><input name="translation" placeholder="Transtation..." class="text en-text new-text" minlength="2"
                         maxlength="20" data-lang="en"></td>
-                <td class="p-0" style="width: 30px; height: 30px;">
+                <td class="p-0">
                 </td>
                 <td>
                 </td>

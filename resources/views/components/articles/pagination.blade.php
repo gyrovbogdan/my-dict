@@ -1,3 +1,3 @@
 <div class="pagination justify-content-center">
-    {!! $articles->links() !!}
+    {!! $articles->onEachSide(0)->links() !!}
 </div>
