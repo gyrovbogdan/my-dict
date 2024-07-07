@@ -49,6 +49,10 @@ input.text {
     }
 }
 
-td > input {
+td input {
+    width: 100%;
+}
+
+.text-input {
     width: 100%;
 }

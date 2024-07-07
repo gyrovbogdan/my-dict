@@ -57,6 +57,19 @@ export function storeEventListeners(dictionary) {
             $(".new-text").val("");
         }
     });
+
+    $("#button-add").on("click", function () {
+        const $tr = $(this).closest("tr");
+        const $word = $tr.find("input[name=word]");
+        const text = $word.val();
+        const lang = $word.data("lang");
+        if (text == "" || lang == "") return;
+
+        dictionary.api.store(text, lang);
+        dictionary.init();
+
+        $(".new-text").val("");
+    });
 }
 
 export function translationEventListeners(dictionary) {

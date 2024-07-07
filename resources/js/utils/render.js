@@ -4,9 +4,9 @@ export function renderTable(data, mode, user = null) {
     $table.empty();
 
     const createCloseButton = () =>
-        '<td><button class="btn btn-close delete-button"></button></td>';
+        '<td><button class="btn btn-light delete-button"><i class="bi bi-x-lg"></i></button></td>';
     const createAddButton = () =>
-        '<td><button class="btn add-button"><i class="bi bi-bookmark-plus"></i></button></td>';
+        '<td><button class="btn btn-light add-button"><i class="bi bi-bookmark-plus"></i></button></td>';
 
     let cells = "";
     switch (mode) {
@@ -26,14 +26,23 @@ export function renderTable(data, mode, user = null) {
             break;
     }
 
+    /*   */
     let tableRows = "";
     for (const row of data["data"]) {
         const { number, id, word, translation } = row;
         const tableRow = `
         <tr>
             <th scope="row">${number}<input hidden name="id" value="${id}"></th>
-            <td><input name="word" value="${word}" class="text ru-text table-text" minlength="1" maxlength="20" data-lang="ru"></td>
-            <td><input name="translation" value="${translation}" class="text en-text table-text" minlength="2" maxlength="20" data-lang="en"></td>
+            <td>
+                <form class="text-input" onsubmit="return false;">
+                    <input name="word" value="${word}" class="text ru-text table-text" minlength="1" maxlength="20" data-lang="ru">
+                </form>
+            </td>
+            <td>
+                <form class="text-input" onsubmit="return false;">
+                    <input name="translation" value="${translation}" class="text en-text table-text" minlength="2" maxlength="20" data-lang="en">
+                </form>
+            </td>
             ${cells}
         </tr>`;
         tableRows += tableRow;
