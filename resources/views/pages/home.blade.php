@@ -11,7 +11,7 @@
                 ])
                 @include('components.home.dictionary')
 
-                <h1 class="my-3"> Последние <a href="{{ route('article.index') }}"> статьи </a>: </h1>
+                <h1 class="my-4"> Последние <a href="{{ route('article.index') }}"> статьи </a>: </h1>
                 @foreach ($articles as $article)
                     @include('components.articles.article-card', $article)
                 @endforeach

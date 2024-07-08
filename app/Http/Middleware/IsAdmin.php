@@ -17,6 +17,6 @@ class IsAdmin
     {
         if (optional(auth()->user())->isAdmin())
             return $next($request);
-        abort(403, 'You need to be administrator to perform this action');
+        return to_route('home');
     }
 }

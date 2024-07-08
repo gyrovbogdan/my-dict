@@ -16,8 +16,5 @@ use App\Http\Controllers\Web\HomeController;
 */
 
 Auth::routes();
-
-Route::middleware('auth:sanctum')->
-    get('/', [HomeController::class, 'index'])->name('home');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('article', ArticleController::class);
