@@ -9,6 +9,10 @@ export function paginationEventListeners(dictionary) {
 }
 
 export function updateEventListeners(dictionary) {
+    if (!dictionary.user) {
+        return;
+    }
+
     $(".table-text").on("focus", function () {
         const $this = $(this);
         const $row = $this.closest("tr");
@@ -35,6 +39,10 @@ export function updateEventListeners(dictionary) {
 }
 
 export function deleteEventListeners(dictionary) {
+    if (!dictionary.user) {
+        return;
+    }
+
     $(".delete-button").on("click", function () {
         const id = $(this).closest("tr").find("input[name=id]").val();
         dictionary.api.delete(id);
@@ -43,6 +51,10 @@ export function deleteEventListeners(dictionary) {
 }
 
 export function storeEventListeners(dictionary) {
+    if (!dictionary.user) {
+        return;
+    }
+
     $(".new-text").on("keydown", function (e) {
         if (e.key == "Enter") {
             const $this = $(this);
@@ -102,6 +114,10 @@ export function translationEventListeners(dictionary) {
 }
 
 export function addToUserDictionaryEventListeners(dictionary) {
+    if (!dictionary.user) {
+        return;
+    }
+
     $(".add-button").on("click", function () {
         const $tr = $(this).closest("tr");
         const text = $tr.find("input[name=word]").val();

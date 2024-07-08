@@ -6,7 +6,7 @@ export class Toaster {
     }
 
     info(title, message) {
-        const toastHtml = this.getString("text-bg-info", id, title, message);
+        const toastHtml = this.getString("text-bg-info", title, message);
         this.create(toastHtml);
         this.counter++;
     }

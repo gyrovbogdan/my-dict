@@ -16,7 +16,6 @@ class Dictionary {
         this.init = this.init.bind(this);
         this.display = this.display.bind(this);
         this.addEventListeners = this.addEventListeners.bind(this);
-        this.user = null;
     }
 
     async init() {
