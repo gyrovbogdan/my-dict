@@ -87,13 +87,17 @@ export function translationEventListeners(dictionary) {
 
             const source = $element.data("lang");
             const target = source === "ru" ? "en" : "ru";
+            $element.closest("tr").find(`.${target}-text`).val("Loading...");
             const translation = await dictionary.api.translate(
                 source,
                 target,
                 text
             );
-            $element.closest("tr").find(`.${target}-text`).val(translation);
-        }, 300);
+
+            if ($element.val()) {
+                $element.closest("tr").find(`.${target}-text`).val(translation);
+            }
+        }, 700);
     });
 }
 
