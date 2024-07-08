@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Article;
+use App\Services\ArticleService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
@@ -24,6 +27,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('pages.home');
+        $articles = ArticleService::get(3);
+        return view('pages.home', compact('articles'));
     }
 }

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleService
 {
-    public static function get()
+    public static function get($perPage = 10)
     {
-        $articles = Article::orderByDesc('id')->paginate(10);
+        $articles = Article::orderByDesc('id')->paginate($perPage);
         return ArticleService::transform($articles);
     }
 
