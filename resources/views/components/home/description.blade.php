@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header"> Ваш Словарь </div>
+    <div class="card-header fw-bold"> Ваш Словарь </div>
     <div class="card-body">
         Добро пожаловать в Ваш Словарь. Здесь вы можете записывать слова и они всегда будут у вас под рукой!
         @auth

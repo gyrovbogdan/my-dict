@@ -1,5 +1,5 @@
 // Fonts
-@import url("https://fonts.bunny.net/css?family=Nunito");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Variables
 @import "variables";
@@ -8,16 +8,64 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+// Font style
+* {
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.dropdown-item {
+    font-weight: 600;
+}
+
+th {
+    font-weight: bold;
+}
+
+// Buttons
+.btn {
+    font-weight: 500;
+}
+
+.btn-dict {
+    border: none;
+    background-color: transparent;
+    color: rgb(82, 82, 82);
+}
+
+.btn-dict:hover,
+.btn-dict:focus {
+    background-color: transparent !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+.btn-dict:active {
+    background-color: transparent !important;
+    color: rgb(65, 65, 65) !important;
+}
+
+// Unselectable
 .unselectable {
     user-select: none;
 }
 
+// Input
 input.text {
     background-color: transparent;
     border: 0;
     font-size: 1em;
 }
 
+td input {
+    width: 100%;
+}
+
+.text-input {
+    width: 100%;
+}
+
+// Article-Card
 .card-img {
     position: relative;
     background-position: center;
@@ -47,12 +95,4 @@ input.text {
     .card-body {
         min-height: 250px;
     }
-}
-
-td input {
-    width: 100%;
-}
-
-.text-input {
-    width: 100%;
 }
