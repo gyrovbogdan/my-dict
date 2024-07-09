@@ -1,9 +1,12 @@
 export function paginationEventListeners(dictionary) {
-    $(".page-item:not(.disabled) .page-link").on("click", function () {
-        $(".page-item").removeClass("active");
-        $(this).addClass("active");
+    $(".page-item:not(.disabled, .active) .page-link").on("click", function () {
+        const $this = $(this);
 
-        dictionary.url = $(this).data("href");
+        $this.off();
+        $(".page-item").removeClass("active");
+        $this.addClass("active");
+
+        dictionary.url = $this.data("href");
         dictionary.init();
     });
 }
@@ -44,7 +47,9 @@ export function deleteEventListeners(dictionary) {
     }
 
     $(".delete-button").on("click", function () {
-        const id = $(this).closest("tr").find("input[name=id]").val();
+        const $this = $(this);
+        $this.off();
+        const id = $this.closest("tr").find("input[name=id]").val();
         dictionary.api.delete(id);
         dictionary.init();
     });

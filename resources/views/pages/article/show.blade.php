@@ -7,7 +7,7 @@
                 @api_token
                 @include('components.article.article-id')
                 @include('components.article.admin-buttons')
-                @include('components.common.description', $article)
+                @include('components.article.description', $article)
                 @include('components.article.dictionary')
                 @vite('resources/js/pages/article.js')
             </div>
