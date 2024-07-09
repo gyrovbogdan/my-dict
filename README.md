@@ -70,7 +70,7 @@
 
 ### Laravel Backend
 
-![Структура приложения](./my-dict-structure.md)
+![Структура приложения](./my-dict-structure.png)
 
 #### Основные сущности
 
