@@ -4,17 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StoreUserDictionaryRequest;
 use App\Http\Requests\UpdateUserDictionaryRequest;
+use App\Models\Article;
 use App\Models\UserDictionary;
 use App\Services\DictionaryService;
 use App\Http\Controllers\Controller;
 
 class UserDictionaryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum'])->except('index');
+        $this->middleware(['optional.auth.sanctum'])->only('index');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        if (!auth()->check())
+            return DictionaryService::get(Article::first());
+
         return DictionaryService::get(auth()->user());
     }
 

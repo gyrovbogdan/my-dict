@@ -11,7 +11,7 @@ export function renderTable(data, mode, user = null) {
     let cells = "";
     switch (mode) {
         case "dictionary":
-            cells = createCloseButton();
+            if (user) cells = createCloseButton();
             break;
         case "article.dictionary":
             if (user) {
