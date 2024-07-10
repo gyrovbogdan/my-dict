@@ -1,4 +1,4 @@
-<a class="card mb-3 text-decoration-none" href="{{ route('article.show', ['article' => $id]) }}">
+<a class="card mb-3 text-decoration-none" href="{{ route('articles.show', ['article' => $id]) }}">
     <div class="card-img" style="background-image: url({{ asset($image) }});">
         <div class="card-content">
             <p class="card-header text-center py-3 fs-4">{{ $title }}</p>

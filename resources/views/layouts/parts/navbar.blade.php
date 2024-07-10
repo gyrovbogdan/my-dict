@@ -13,7 +13,7 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Словарь</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('article.index') }}">Статьи</a>
+                <li class="nav-item"><a class="nav-link" href="{{ route('articles.index') }}">Статьи</a>
                 </li>
             </ul>
 

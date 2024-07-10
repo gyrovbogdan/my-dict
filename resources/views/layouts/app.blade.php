@@ -13,7 +13,7 @@
     <main class="flex-shrink-0">
         @yield('content')
         <div class="toast-container position-fixed bottom-0 end-0 p-3" id='toast-container'>
-            @include('layouts.parts.toast-container')
+            @include('layouts.parts.toast_container')
     </main>
 
     <footer class="mt-auto">

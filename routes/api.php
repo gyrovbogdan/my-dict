@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', fn() => auth()->user());
 });
 Route::resource('dictionary', UserDictionaryController::class);
-Route::resource('article.dictionary', ArticleDictionaryController::class);
+Route::resource('articles.dictionary', ArticleDictionaryController::class);
 Route::get('/translate', [TranslateController::class, 'index']);

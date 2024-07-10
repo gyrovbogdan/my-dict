@@ -13,7 +13,7 @@ export function renderTable(data, mode, user = null) {
         case "dictionary":
             if (user) cells = createCloseButton();
             break;
-        case "article.dictionary":
+        case "articles.dictionary":
             if (user) {
                 if (user["is_admin"]) {
                     cells = createAddButton() + createCloseButton();

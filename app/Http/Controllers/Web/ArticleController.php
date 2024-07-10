@@ -20,7 +20,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = ArticleService::get();
-        return view('pages.article.index', compact('articles'));
+        return view('pages.articles.index', compact('articles'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('pages.article.create');
+        return view('pages.articles.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = ArticleService::store($request);
-        return to_route('article.show', ['article' => $article->id]);
+        return to_route('articles.show', ['article' => $article->id]);
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('pages.article.show', compact('article'));
+        return view('pages.articles.show', compact('article'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('pages.article.edit', compact('article'));
+        return view('pages.articles.edit', compact('article'));
     }
 
     /**
@@ -62,7 +62,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $article = ArticleService::update($request, $article);
-        return to_route('article.show', ['article' => $article->id]);
+        return to_route('articles.show', ['article' => $article->id]);
     }
 
     /**
@@ -71,7 +71,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         ArticleService::delete($article);
-        return to_route('article.index');
+        return to_route('articles.index');
 
     }
 }

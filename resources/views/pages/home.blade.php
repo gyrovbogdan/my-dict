@@ -8,9 +8,9 @@
                 @include('components.home.description')
                 @include('components.home.dictionary')
 
-                <p class="mt-4 fs-4 fw-semibold"> Последние <a href="{{ route('article.index') }}">статьи</a>: </p>
+                <p class="mt-4 fs-4 fw-semibold"> Последние <a href="{{ route('articles.index') }}">статьи</a>: </p>
                 @foreach ($articles as $article)
-                    @include('components.articles.article-card', $article)
+                    @include('components.articles.article_card', $article)
                 @endforeach
                 @vite('resources/js/pages/home.js')
             </div>

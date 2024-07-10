@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Создать новую статью</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('article.update', ['article' => $article['id']]) }}"
+                        <form method="POST" action="{{ route('articles.update', ['article' => $article['id']]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
