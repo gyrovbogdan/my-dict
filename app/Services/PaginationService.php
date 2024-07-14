@@ -11,7 +11,7 @@ class PaginationService
         $total = $paginated->total();
         $perPage = $paginated->perPage();
         $currentPage = $paginated->currentPage();
-        $startIndex = round((($total / $perPage) - $currentPage + 1) * $perPage);
+        $startIndex = round(($total / $perPage - $currentPage + 1) * $perPage);
 
         $paginated->getCollection()->transform(function ($item, $index) use ($startIndex) {
             $item->number = $startIndex - $index;

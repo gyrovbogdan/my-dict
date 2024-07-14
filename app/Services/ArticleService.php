@@ -12,7 +12,7 @@ class ArticleService
     public static function get($perPage = 10)
     {
         $articles = Article::orderByDesc('id')->paginate($perPage);
-        return ArticleService::transform($articles);
+        return static::transform($articles);
     }
 
     public static function update(Request $request, Article $article)
@@ -50,8 +50,8 @@ class ArticleService
     public static function transform($articles)
     {
         $articles->transform(function ($item, $key) {
-            ArticleService::addCaption($item);
-            ArticleService::addImageUrl($item);
+            static::addCaption($item);
+            static::addImageUrl($item);
             return $item;
         });
         return $articles;
