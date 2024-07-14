@@ -22,14 +22,14 @@ class DictionaryService
     public static function store(FormRequest $request, $owner)
     {
         extract($request->only(['text', 'lang']));
-        $translationPair = DictionaryService::getTranslationPair($text, $lang);
+        $translationPair = static::getTranslationPair($text, $lang);
         return $owner->dictionary()->create($translationPair);
     }
 
     public static function update(FormRequest $request, $dictionary)
     {
         extract($request->only(['text', 'lang']));
-        $translationPair = DictionaryService::getTranslationPair($text, $lang);
+        $translationPair = static::getTranslationPair($text, $lang);
         return $dictionary->update($translationPair);
     }
 
