@@ -50,21 +50,11 @@ class ArticleService
     public static function transform($articles)
     {
         $articles->transform(function ($item, $key) {
-            static::addCaption($item);
-            static::addImageUrl($item);
+            $timeAgo = Carbon::parse($item['updated_at'])->diffForHumans();
+            $item['caption'] = "Обновлено $timeAgo";
+            $item['image'] = Storage::url($item['image']);
             return $item;
         });
         return $articles;
-    }
-
-    private static function addCaption(&$article)
-    {
-        $timeAgo = Carbon::parse($article['updated_at'])->diffForHumans();
-        $article['caption'] = "Обновлено $timeAgo";
-    }
-
-    private static function addImageUrl(&$article)
-    {
-        $article['image'] = Storage::url($article['image']);
     }
 }
