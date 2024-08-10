@@ -34,12 +34,12 @@ export function renderTable(data, mode, user = null) {
         <tr>
             <th scope="row">${number}<input hidden name="id" value="${id}"></th>
             <td>
-                <form class="text-input" onsubmit="return false;">
+                <form onsubmit="return false;">
                     <input name="word" value="${word}" class="text ru-text table-text" minlength="1" maxlength="20" data-lang="ru">
                 </form>
             </td>
             <td>
-                <form class="text-input" onsubmit="return false;">
+                <form onsubmit="return false;">
                     <input name="translation" value="${translation}" class="text en-text table-text" minlength="2" maxlength="20" data-lang="en">
                 </form>
             </td>

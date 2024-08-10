@@ -34,6 +34,10 @@
         font-weight: bold;
     }
 
+    tr {
+        height: 50px;
+    }
+
     .btn-dict {
         border: none;
         background-color: transparent;
@@ -51,19 +55,10 @@
         }
     }
 
-    // Input
     input.text {
         background-color: transparent;
         border: 0;
         width: 100%;
-    }
-
-    .text-input {
-        width: 100%;
-    }
-
-    tr {
-        height: 50px;
     }
 }
 
