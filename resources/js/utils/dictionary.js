@@ -36,11 +36,24 @@ class Dictionary {
 
     addEventListeners() {
         paginationEventListeners(this);
-        updateEventListeners(this);
-        deleteEventListeners(this);
-        storeEventListeners(this);
         translationEventListeners(this);
-        addToUserDictionaryEventListeners(this);
+
+        function manageEventListeners(dictionary) {
+            updateEventListeners(dictionary);
+            deleteEventListeners(dictionary);
+            storeEventListeners(dictionary);
+        }
+
+        if (this.user) {
+            if (this.mode == "articles.dictionary") {
+                addToUserDictionaryEventListeners(this);
+                if (this.user.is_admin) {
+                    manageEventListeners(this);
+                }
+            } else if (this.mode == "dictionary") {
+                manageEventListeners(this);
+            }
+        }
     }
 }
 
