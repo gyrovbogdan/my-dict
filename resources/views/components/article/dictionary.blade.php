@@ -32,10 +32,15 @@
                                 minlength="2" maxlength="20" data-lang="en">
                         </form>
                     </td>
-                    <td class="p-0">
-                    </td>
-                    <td>
-                    </td>
+                    @auth
+                        <td class="p-0">
+                        </td>
+                    @endauth
+                    @admin
+                        <td>
+                            <button class="btn btn-dict" id="btn-add"><i class="bi bi-plus-lg"></i></button>
+                        </td>
+                    @endadmin
                 </tr>
             @endadmin
 
