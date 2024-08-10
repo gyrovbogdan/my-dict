@@ -28,7 +28,7 @@
                         </form>
                     </td>
                     <td>
-                        <button class="btn btn-dict" id="button-add"><i class="bi bi-plus-lg"></i></button>
+                        <button class="btn btn-dict" id="btn-add"><i class="bi bi-plus-lg"></i></button>
                     </td>
                 </tr>
             @endauth

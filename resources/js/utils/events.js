@@ -46,7 +46,7 @@ export function deleteEventListeners(dictionary) {
         return;
     }
 
-    $(".delete-button").on("click", function () {
+    $(".btn-delete").on("click", function () {
         const $this = $(this);
         $this.off();
         const id = $this.closest("tr").find("input[name=id]").val();
@@ -76,7 +76,7 @@ export function storeEventListeners(dictionary) {
         }
     });
 
-    $("#button-add").on("click", function () {
+    $("#btn-add").on("click", function () {
         const $tr = $(this).closest("tr");
         const $word = $tr.find("input[name=word]");
         const text = $word.val();
@@ -125,7 +125,7 @@ export function addToUserDictionaryEventListeners(dictionary) {
         return;
     }
 
-    $(".add-button").on("click", function () {
+    $(".bnt-add").on("click", function () {
         const $tr = $(this).closest("tr");
         const text = $tr.find("input[name=word]").val();
         const lang = "ru";
