@@ -67,8 +67,9 @@ export function storeEventListeners(dictionary) {
             const lang = $this.data("lang");
             if (text == "" || lang == "") return;
 
-            dictionary.api.store(text, lang);
-            dictionary.init();
+            dictionary.api.store(text, lang, dictionary.api.url, () =>
+                dictionary.init()
+            );
 
             $this.trigger("blur");
             $(".new-text").val("");
@@ -82,8 +83,9 @@ export function storeEventListeners(dictionary) {
         const lang = $word.data("lang");
         if (text == "" || lang == "") return;
 
-        dictionary.api.store(text, lang);
-        dictionary.init();
+        dictionary.api.store(text, lang, dictionary.api.url, () =>
+            dictionary.init()
+        );
 
         $(".new-text").val("");
     });

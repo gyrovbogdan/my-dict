@@ -65,7 +65,7 @@ export class Api {
             );
     }
 
-    store(text, lang, url = this.url) {
+    store(text, lang, url = this.url, callbackFunc = () => 0) {
         return $.ajax(
             this.withToken({
                 url: url,
@@ -73,12 +73,13 @@ export class Api {
                 data: { text, lang },
             })
         )
-            .done(() =>
+            .done(() => {
                 this.toast.success(
                     "Данные успешно обновлены!",
                     "Ваше слово сохранено, продолжайте в том же духе"
-                )
-            )
+                );
+                callbackFunc();
+            })
             .fail(() =>
                 this.toast.error(
                     "Возникла ошибка...",
