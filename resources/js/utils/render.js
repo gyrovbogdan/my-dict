@@ -4,9 +4,9 @@ export function renderTable(data, mode, user = null) {
     $table.empty();
 
     const createDeleteButton = () =>
-        '<td><button class="btn btn-light btn-delete btn-dict"><i class="bi bi-x-lg"></i></button></td>';
+        '<td><button class="btn btn-delete btn-dict"><i class="bi bi-x-lg"></i></button></td>';
     const createAddButton = () =>
-        '<td><button class="btn btn-light bnt-add btn-dict"><i class="bi bi-plus-lg"></i></button></td>';
+        '<td><button class="btn bnt-add btn-dict"><i class="bi bi-plus-lg"></i></button></td>';
 
     let cells = "";
 
