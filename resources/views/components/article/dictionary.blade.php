@@ -6,8 +6,10 @@
                     <th scope="col">#</th>
                     <th scope="col">Слово</th>
                     <th scope="col">Перевод</th>
-                    <td>
-                    </td>
+                    @auth
+                        <td>
+                        </td>
+                    @endauth
                     @admin
                         <td>
                         </td>
