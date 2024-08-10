@@ -42,9 +42,10 @@ services:
     npm:
         image: node:18
         working_dir: /var/www/my-dict
-        command: ["npm", "run", "build"]
+        command: ["npm", "run", "dev", "--", "--host"]
+        # command: ["npm", "run", "build"]
+        ports:
+            - 5173:5173
         volumes:
             - ./:/var/www/my-dict
-        environment:
-            - NODE_ENV=development
         container_name: my_dict_npm
