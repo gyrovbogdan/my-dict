@@ -3,30 +3,20 @@ export function renderTable(data, mode, user = null) {
     $table.hide();
     $table.empty();
 
-    const createCloseButton = () =>
-        '<td><button class="btn btn-light delete-button btn-dict"><i class="bi bi-x-lg"></i></button></td>';
+    const createDeleteButton = () =>
+        '<td><button class="btn btn-delete btn-dict"><i class="bi bi-x-lg"></i></button></td>';
     const createAddButton = () =>
-        '<td><button class="btn btn-light add-button btn-dict"><i class="bi bi-plus-lg"></i></button></td>';
+        '<td><button class="btn bnt-add btn-dict"><i class="bi bi-plus-lg"></i></button></td>';
 
     let cells = "";
-    switch (mode) {
-        case "dictionary":
-            if (user) cells = createCloseButton();
-            break;
-        case "articles.dictionary":
-            if (user) {
-                if (user["is_admin"]) {
-                    cells = createAddButton() + createCloseButton();
-                } else {
-                    cells = createAddButton();
-                }
-            }
-            break;
-        default:
-            break;
+
+    if (user) {
+        if (mode == "articles.dictionary") {
+            cells = createAddButton();
+            if (user.is_admin) cells += createDeleteButton();
+        } else cells = createDeleteButton();
     }
 
-    /*   */
     let tableRows = "";
     for (const row of data["data"]) {
         const { number, id, word, translation } = row;
@@ -34,12 +24,12 @@ export function renderTable(data, mode, user = null) {
         <tr>
             <th scope="row">${number}<input hidden name="id" value="${id}"></th>
             <td>
-                <form class="text-input" onsubmit="return false;">
+                <form onsubmit="return false;">
                     <input name="word" value="${word}" class="text ru-text table-text" minlength="1" maxlength="20" data-lang="ru">
                 </form>
             </td>
             <td>
-                <form class="text-input" onsubmit="return false;">
+                <form onsubmit="return false;">
                     <input name="translation" value="${translation}" class="text en-text table-text" minlength="2" maxlength="20" data-lang="en">
                 </form>
             </td>

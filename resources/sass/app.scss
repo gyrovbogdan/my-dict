@@ -19,54 +19,44 @@
     font-weight: 600;
 }
 
-th {
-    font-weight: bold;
-}
-
-// Buttons
 .btn {
     font-weight: 500;
 }
 
-.btn-dict {
-    border: none;
-    background-color: transparent;
-    color: rgb(82, 82, 82);
-}
-
-.btn-dict:hover,
-.btn-dict:focus {
-    background-color: transparent !important;
-    color: rgb(0, 0, 0) !important;
-}
-
-.btn-dict:active {
-    background-color: transparent !important;
-    color: rgb(65, 65, 65) !important;
-}
-
-// Unselectable
 .unselectable {
     user-select: none;
 }
 
-// Input
-input.text {
-    background-color: transparent;
-    border: 0;
-    font-size: 1em;
-}
+// Dictionary
+#dict {
+    th {
+        font-weight: bold;
+    }
 
-td input {
-    width: 100%;
-}
+    tr {
+        height: 50px;
+    }
 
-.text-input {
-    width: 100%;
-}
+    .btn-dict {
+        color: var(--bs-secondary-text-emphasis);
+        padding: 5px 10px 5px 10px;
 
-tr {
-    height: 50px;
+        &:hover,
+        &:focus {
+            background-color: rgba(102, 102, 102, 0.397);
+            color: var(--bs-light);
+        }
+        &:active {
+            color: var(--bs-danger);
+            border-color: var(--bs-danger);
+        }
+    }
+
+    input.text {
+        background-color: transparent;
+        border: 0;
+        width: 100%;
+    }
 }
 
 // Article-Card

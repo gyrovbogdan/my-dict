@@ -11,9 +11,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Словарь</a>
+                <li class="nav-item"><a class="nav-link {{ Route::is('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Словарь</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('articles.index') }}">Статьи</a>
+                <li class="nav-item"><a class="nav-link {{ Route::is('articles.*') ? 'active' : '' }}"
+                        href="{{ route('articles.index') }}">Статьи</a>
                 </li>
             </ul>
 

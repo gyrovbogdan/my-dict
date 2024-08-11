@@ -16,19 +16,19 @@
                 <tr>
                     <th scope="row">...<input hidden name="id"></th>
                     <td>
-                        <form class="text-input" onsubmit="return false;">
+                        <form onsubmit="return false;">
                             <input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2"
                                 maxlength="20" data-lang="ru">
                         </form>
                     </td>
                     <td>
-                        <form class="text-input" onsubmit="return false;">
+                        <form onsubmit="return false;">
                             <input name="translation" placeholder="Transtation..." class="text en-text new-text"
                                 minlength="2" maxlength="20" data-lang="en">
                         </form>
                     </td>
                     <td>
-                        <button class="btn btn-dict" id="button-add"><i class="bi bi-plus-lg"></i></button>
+                        <button class="btn btn-dict" id="btn-add"><i class="bi bi-plus-lg"></i></button>
                     </td>
                 </tr>
             @endauth

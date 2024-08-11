@@ -6,8 +6,10 @@
                     <th scope="col">#</th>
                     <th scope="col">Слово</th>
                     <th scope="col">Перевод</th>
-                    <td>
-                    </td>
+                    @auth
+                        <td>
+                        </td>
+                    @endauth
                     @admin
                         <td>
                         </td>
@@ -19,21 +21,26 @@
                 <tr>
                     <th scope="row">...<input hidden name="id"></th>
                     <td>
-                        <form class="text-input" onsubmit="return false;">
+                        <form onsubmit="return false;">
                             <input name="word" placeholder="Слово..." class="text ru-text new-text" minlength="2"
                                 maxlength="20" data-lang="ru">
                         </form>
                     </td>
                     <td>
-                        <form class="text-input" onsubmit="return false;">
+                        <form onsubmit="return false;">
                             <input name="translation" placeholder="Transtation..." class="text en-text new-text"
                                 minlength="2" maxlength="20" data-lang="en">
                         </form>
                     </td>
-                    <td class="p-0">
-                    </td>
-                    <td>
-                    </td>
+                    @auth
+                        <td class="p-0">
+                        </td>
+                    @endauth
+                    @admin
+                        <td>
+                            <button class="btn btn-dict" id="btn-add"><i class="bi bi-plus-lg"></i></button>
+                        </td>
+                    @endadmin
                 </tr>
             @endadmin
 
