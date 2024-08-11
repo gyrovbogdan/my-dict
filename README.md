@@ -15,49 +15,85 @@
 
 ### Установка
 
-1. Клонируйте репозиторий:
+> Если вы хотите использовать **Docker Compose**:
+>
+> 1.  Клонируйте репозиторий:
+>
+> ```bash
+> git clone https://github.com/gyrovbogdan/my-dict.git
+> ```
+>
+> 2.  Перейдите в директорию проекта:
+>
+> ```bash
+> cd my-dict
+> ```
+>
+> 3. Запустите контейнеры:
+>
+> ```bash
+>    docker-compose up -d
+> ```
+>
+> 4. Скопируйте файл `.env.example` в `.env`:
+>
+> ```bash
+>   cp .env.example .env
+> ```
+>
+> 5. Установите зависимости, и настройте Laravel с помощью скрипта run.sh:
+>
+> ```bash
+>   docker exec my_dict_app bash ./my-dict/docker/run.sh
+> ```
+>
+> Сайт будет доступен по адресу `http://localhost:8080`
+
+Для обычной установки следуйте следующей инструкции:
+
+1.  Клонируйте репозиторий:
 
     ```bash
     git clone https://github.com/gyrovbogdan/my-dict.git
     ```
 
-2. Перейдите в директорию проекта:
+2.  Перейдите в директорию проекта:
 
     ```bash
     cd my-dict
     ```
 
-3. Установите зависимости PHP с помощью Composer:
+3.  Установите зависимости PHP с помощью Composer:
 
     ```bash
     composer install
     ```
 
-4. Установите зависимости JavaScript с помощью npm:
+4.  Установите зависимости JavaScript с помощью npm:
 
     ```bash
     npm install
     ```
 
-5. Скопируйте файл `.env.example` в `.env` и настройте его:
+5.  Скопируйте файл `.env.example` в `.env` и настройте его:
 
     ```bash
     cp .env.example .env
     ```
 
-6. Сгенерируйте ключ приложения:
+6.  Сгенерируйте ключ приложения:
 
     ```bash
     php artisan key:generate
     ```
 
-7. Настройте базу данных и выполните миграции:
+7.  Настройте базу данных и выполните миграции:
 
     ```bash
     php artisan migrate
     ```
 
-8. Запустите сервер разработки:
+8.  Запустите сервер разработки:
     ```bash
     php artisan serve
     ```
