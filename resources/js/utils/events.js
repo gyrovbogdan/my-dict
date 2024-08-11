@@ -27,7 +27,14 @@ export function updateEventListeners(dictionary) {
                 const id = $row.find("input[name=id]").val();
                 const text = $this.val();
                 const lang = $this.data("lang");
-                dictionary.api.update(id, text, lang);
+                dictionary.api
+                    .update(id, text, lang)
+                    .fail(() =>
+                        dictionary.toast.error(
+                            "Возникла ошибка...",
+                            "Возникла ошибка при обновлении данных. Обновите страницу и попробуйте еще раз..."
+                        )
+                    );
 
                 dataChanged = true;
                 $this.trigger("blur");
@@ -50,7 +57,14 @@ export function deleteEventListeners(dictionary) {
         const $this = $(this);
         $this.off();
         const id = $this.closest("tr").find("input[name=id]").val();
-        dictionary.api.delete(id);
+        dictionary.api
+            .delete(id)
+            .fail(() =>
+                dictionary.toast.error(
+                    "Возникла ошибка...",
+                    "Возникла ошибка при удалении данных. Обновите страницу и попробуйте еще раз..."
+                )
+            );
         dictionary.init();
     });
 }
@@ -67,9 +81,17 @@ export function storeEventListeners(dictionary) {
             const lang = $this.data("lang");
             if (text == "" || lang == "") return;
 
-            dictionary.api.store(text, lang, dictionary.api.url, () =>
-                dictionary.init()
-            );
+            dictionary.api
+                .store(text, lang)
+                .done(() => {
+                    dictionary.init();
+                })
+                .fail(() =>
+                    dictionary.toast.error(
+                        "Возникла ошибка...",
+                        "Возникла ошибка при сохранении данных. Попробуйте еще раз..."
+                    )
+                );
 
             $this.trigger("blur");
             $(".new-text").val("");
@@ -83,9 +105,17 @@ export function storeEventListeners(dictionary) {
         const lang = $word.data("lang");
         if (text == "" || lang == "") return;
 
-        dictionary.api.store(text, lang, dictionary.api.url, () =>
-            dictionary.init()
-        );
+        dictionary.api
+            .store(text, lang)
+            .done(() => {
+                dictionary.init();
+            })
+            .fail(() =>
+                dictionary.toast.error(
+                    "Возникла ошибка...",
+                    "Возникла ошибка при сохранении данных. Попробуйте еще раз..."
+                )
+            );
 
         $(".new-text").val("");
     });
@@ -107,11 +137,14 @@ export function translationEventListeners(dictionary) {
             const source = $element.data("lang");
             const target = source === "ru" ? "en" : "ru";
             $element.closest("tr").find(`.${target}-text`).val("Loading...");
-            const translation = await dictionary.api.translate(
-                source,
-                target,
-                text
-            );
+            const translation = await dictionary.api
+                .translate(source, target, text)
+                .fail(() =>
+                    dictionary.toast.error(
+                        "Возникла ошибка...",
+                        "Возникла ошибка при переводе. Обновите страницу и попробуйте еще раз..."
+                    )
+                );
 
             if ($element.val()) {
                 $element.closest("tr").find(`.${target}-text`).val(translation);
@@ -129,7 +162,20 @@ export function addToUserDictionaryEventListeners(dictionary) {
         const $tr = $(this).closest("tr");
         const text = $tr.find("input[name=word]").val();
         const lang = "ru";
-        dictionary.api.store(text, lang, "/api/dictionary");
+        dictionary.api
+            .store(text, lang, "/api/dictionary")
+            .done(() => {
+                dictionary.toast.success(
+                    "Слово успешно сохранено...",
+                    "В ваш словарь добавлено новое слово. Продолжайте в том же духе!"
+                );
+            })
+            .fail(() =>
+                dictionary.toast.error(
+                    "Возникла ошибка...",
+                    "Возникла ошибка при сохранении данных. Попробуйте еще раз..."
+                )
+            );
     });
 }
 

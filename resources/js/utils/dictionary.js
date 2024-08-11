@@ -1,4 +1,5 @@
 import { renderTable, renderPagination } from "./render";
+import { Toaster } from "./toast";
 import {
     paginationEventListeners,
     storeEventListeners,
@@ -16,11 +17,15 @@ class Dictionary {
         this.init = this.init.bind(this);
         this.display = this.display.bind(this);
         this.addEventListeners = this.addEventListeners.bind(this);
+        this.toast = new Toaster();
     }
 
     async init() {
         try {
-            this.user = await this.api.getUser();
+            this.user = await this.api
+                .getUser()
+                .done((data) => data)
+                .fail(() => null);
         } catch (error) {}
         await this.display();
         this.addEventListeners();
