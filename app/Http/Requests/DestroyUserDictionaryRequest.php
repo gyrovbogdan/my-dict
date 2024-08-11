@@ -2,12 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Services\DictionaryService;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserDictionaryRequest extends FormRequest
+class DestroyUserDictionaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,6 +12,7 @@ class UpdateUserDictionaryRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->dictionary->user_id == $this->user()->id;
+
     }
 
     /**
@@ -24,6 +22,8 @@ class UpdateUserDictionaryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return DictionaryService::$rules;
+        return [
+            //
+        ];
     }
 }

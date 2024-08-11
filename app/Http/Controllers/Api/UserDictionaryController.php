@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\DestroyUserDictionaryRequest;
 use App\Http\Requests\StoreUserDictionaryRequest;
 use App\Http\Requests\UpdateUserDictionaryRequest;
 use App\Models\Article;
@@ -48,7 +49,7 @@ class UserDictionaryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserDictionary $dictionary)
+    public function destroy(DestroyUserDictionaryRequest $request, UserDictionary $dictionary)
     {
         return DictionaryService::delete($dictionary);
     }
