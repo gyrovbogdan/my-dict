@@ -148,10 +148,10 @@ Frontend часть приложения реализована на jQuery и �
 
 ## Технологии
 
--   Laravel
--   jQuery
--   MySQL
--   Bootstrap
+-   Laravel 10
+-   jQuery 3.7
+-   MySQL 8.4
+-   Bootstrap 5
 
 ## Контакты
 
