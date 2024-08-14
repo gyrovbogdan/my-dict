@@ -44,6 +44,7 @@ export function updateEventListeners(dictionary) {
         $this.on("blur", function () {
             if (dataChanged) return;
             $this.closest("tr").html(buffer);
+            dictionary.addEventListeners();
         });
     });
 }
